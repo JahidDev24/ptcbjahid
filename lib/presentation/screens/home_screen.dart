@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/repositories/deal_repository.dart';
 import '../../logic/deal/deal_bloc.dart';
+import '../widgets/app_drawer.dart';
 import 'deal_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,15 +20,8 @@ class HomeScreen extends StatelessWidget {
           title: const Text("Deals"),
           bottom: TabBar(
             // 1. TEXT COLORS
-            labelColor:
-                Colors.white, // Color of text when SELECTED (Bright White)
-            unselectedLabelColor:
-                Colors
-                    .white70, // Color of text when UNSELECTED (Slightly dim white)
-            // 2. THE "SHADED WHITE" BACKGROUND EFFECT
-            // Makes the shade fill the whole tab
-
-            // 3. REMOVE DEFAULT RIPPLE (Optional, for a cleaner look)
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white70,
             overlayColor: MaterialStateProperty.all(Colors.transparent),
             tabs: const [
               Tab(text: "TOP"),
@@ -36,11 +30,8 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        drawer: const Drawer(
-          child: Center(
-            child: Text("Navigation Drawer"),
-          ), // Requirement [cite: 27]
-        ),
+        drawer: const MyDrawer(),
+
         body: TabBarView(
           children: [
             _buildTab(DealType.top),

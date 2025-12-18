@@ -33,18 +33,15 @@ class _DealListScreenState extends State<DealListScreen> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh:
-          () async =>
-              context.read<DealBloc>().add(RefreshDeals()), // [cite: 31]
+      onRefresh: () async => context.read<DealBloc>().add(RefreshDeals()),
       child: BlocConsumer<DealBloc, DealState>(
-        // LISTENER: Handles one-time events like SnackBars
         listener: (context, state) {
           if (state is DealError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.message),
                 backgroundColor: Colors.red,
-                behavior: SnackBarBehavior.floating, // Floats above bottom nav
+                behavior: SnackBarBehavior.floating,
               ),
             );
           }
